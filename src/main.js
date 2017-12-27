@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { extendObservable, observable } from "mobx";
 
-import App from "./components/App.jsx";
+import App from "./components/app.jsx";
 import "./main.styl";
 
 var store = extendObservable( observable({

@@ -3,7 +3,8 @@ const path    = require("path");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin  = require("html-webpack-plugin");
-const ExtractTextPlugin  = require('extract-text-webpack-plugin');
+const ExtractTextPlugin  = require("extract-text-webpack-plugin");
+const CssoWebpackPlugin  = require("csso-webpack-plugin").default;
 
 const merge   = require("webpack-merge");
 const common  = require("./webpack.common.js");
@@ -32,6 +33,8 @@ module.exports = merge( common, {
 
 		new ExtractTextPlugin("styles.[chunkhash].css"),
 
+		new CssoWebpackPlugin(),
+
 		new webpack.HashedModuleIdsPlugin(),
 
 		new webpack.optimize.ModuleConcatenationPlugin(),
@@ -57,7 +60,15 @@ module.exports = merge( common, {
 				test: /\.styl$/,
 				use: ExtractTextPlugin.extract({
 					fallback: "style-loader",
-					use: ["css-loader", "stylus-loader"]
+					use: [
+						"css-loader",
+						{
+							loader: "stylus-loader",
+							options: {
+								preferPathResolver: "webpack"
+							}
+						}
+					]
 				}),
 				include: path.join( __dirname, "src" )
 			}

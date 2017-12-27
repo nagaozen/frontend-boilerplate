@@ -53,7 +53,12 @@ module.exports = merge( common, {
 				use: [
 					"style-loader",
 					"css-loader",
-					"stylus-loader"
+					{
+						loader: "stylus-loader",
+						options: {
+							preferPathResolver: "webpack"
+						}
+					}
 				],
 				include: path.join( __dirname, "src" )
 			}
