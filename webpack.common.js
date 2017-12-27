@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const path = require("path");
+const path    = require("path");
 
 module.exports = {
 
@@ -10,25 +10,12 @@ module.exports = {
 			"mobx",
 			"mobx-react"
 		],
-		app: "./src/app.js"
+		app: path.join( __dirname, "src", "main.js" )
 	},
 
 	output: {
-		filename: "[name].bundle.js",
 		path: path.join( __dirname, "dist" )
 	},
-
-	plugins: [
-
-		new webpack.optimize.CommonsChunkPlugin({
-			name: "vendor",
-			filename: "vendor.js",
-			minChunks: Infinity
-		}),
-
-		new webpack.optimize.ModuleConcatenationPlugin()
-
-	],
 
 	resolve: {
 		extensions: [ ".js", ".jsx" ]

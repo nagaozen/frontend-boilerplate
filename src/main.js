@@ -2,7 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import { extendObservable, observable } from "mobx";
 
-import App from "./components/App";
+import App from "./components/App.jsx";
+import "./main.styl";
 
 var store = extendObservable( observable({
 	// raw data (probably coming from SSR)
@@ -20,7 +21,6 @@ var store = extendObservable( observable({
 	}
 } );
 
-render( <App store={store} />, document.getElementById("app")
-);
+render( <App store={store} />, document.getElementById("app") );
 
 window.store = store;
