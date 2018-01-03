@@ -4,7 +4,7 @@
   "description": "Boilerplate for MobX + React project with JSX and ES6 compilation",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js --json | webpack-bundle-size-analyzer"
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
