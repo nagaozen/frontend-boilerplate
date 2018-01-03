@@ -1,10 +1,12 @@
 const webpack = require("webpack");
 const path    = require("path");
 
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin  = require("html-webpack-plugin");
-const ExtractTextPlugin  = require("extract-text-webpack-plugin");
-const CssoWebpackPlugin  = require("csso-webpack-plugin").default;
+const CleanWebpackPlugin   = require("clean-webpack-plugin");
+const HtmlWebpackPlugin    = require("html-webpack-plugin");
+const ExtractTextPlugin    = require("extract-text-webpack-plugin");
+const CssoWebpackPlugin    = require("csso-webpack-plugin").default;
+const CompressionPlugin    = require("compression-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const merge   = require("webpack-merge");
 const common  = require("./webpack.common.js");
@@ -50,7 +52,13 @@ module.exports = merge( common, {
 
 		new webpack.optimize.UglifyJsPlugin({
 			sourceMap: true
-		})
+		}),
+
+		new CompressionPlugin({
+			test: /\.js$|\.css$|\.html$/
+		}),
+
+		new BundleAnalyzerPlugin()
 
 	],
 
