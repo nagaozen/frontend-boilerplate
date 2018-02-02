@@ -47,7 +47,7 @@ module.exports = merge( common, {
 		}),
 
 		new webpack.optimize.CommonsChunkPlugin({
-			name: 'manifest'
+			name: "manifest"
 		}),
 
 		new webpack.optimize.UglifyJsPlugin({

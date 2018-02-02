@@ -3,6 +3,7 @@ const path    = require("path");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin  = require("html-webpack-plugin");
+const CopyWebpackPlugin  = require("copy-webpack-plugin");
 
 const merge  = require("webpack-merge");
 const common = require("./webpack.common.js");
@@ -28,6 +29,10 @@ module.exports = merge( common, {
 			template: path.join( __dirname, "src", "templates", "index.html" ),
 			xhtml: true
 		}),
+
+		new CopyWebpackPlugin([
+			{ from: path.join( __dirname, "src", "assets" ), to: path.join( __dirname, "dist", "assets" ) }
+		]),
 
 		new webpack.HotModuleReplacementPlugin(),
 
