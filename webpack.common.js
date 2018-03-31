@@ -5,6 +5,12 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin  = require("html-webpack-plugin");
 const CopyWebpackPlugin  = require("copy-webpack-plugin");
 
+const pages = [
+	{ entry: "landing", title: "Landing Page", filename: "index.html" },
+	{ entry: "collection", title: "Collection Page", filename: "collection.html" },
+	{ entry: "document", title: "Document Page", filename: "document.html" }
+];
+
 module.exports = {
 
 	entry: {
@@ -24,41 +30,23 @@ module.exports = {
 	},
 
 	plugins: [
-
-		new CleanWebpackPlugin(["dist"]),
-
-		new HtmlWebpackPlugin({
-			template: path.join( __dirname, "src", "templates", "simple.html" ),
-			chunks: [ "manifest", "vendor", "landing" ],
-			title: "Landing Page Example",
-			filename: "index.html",
-			inject: "body",
-			xhtml: true
-		}),
-
-		new HtmlWebpackPlugin({
-			template: path.join( __dirname, "src", "templates", "simple.html" ),
-			chunks: [ "manifest", "vendor", "collection" ],
-			title: "Collection Page Example",
-			filename: "collection.html",
-			inject: "body",
-			xhtml: true
-		}),
-
-		new HtmlWebpackPlugin({
-			template: path.join( __dirname, "src", "templates", "simple.html" ),
-			chunks: [ "manifest", "vendor", "document" ],
-			title: "Document Page Example",
-			filename: "document.html",
-			inject: "body",
-			xhtml: true
-		}),
-
+		new CleanWebpackPlugin(["dist"])
+	].concat(
+		pages.map(function( data ){
+			return new HtmlWebpackPlugin({
+				template: path.join( __dirname, "src", "templates", "simple.html" ),
+				chunks: [ "manifest", "vendor", data.entry ],
+				title: data.title,
+				filename: data.filename,
+				inject: "body",
+				xhtml: true
+			})
+		})
+	).concat([
 		new CopyWebpackPlugin([
 			{ from: path.join( __dirname, "src", "assets" ), to: path.join( __dirname, "dist", "assets" ) }
 		])
-
-	],
+	]), 
 
 	resolve: {
 		extensions: [ ".js", ".jsx" ]
