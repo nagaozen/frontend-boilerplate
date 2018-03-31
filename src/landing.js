@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import { extendObservable, observable } from "mobx";
 
-import App from "./components/app.jsx";
-import "./main.styl";
+import App from "./components/landing.jsx";
+import "./app.styl";
 
 var store = extendObservable( observable({
 	// raw data (probably coming from SSR)

@@ -1,8 +1,6 @@
 const webpack = require("webpack");
 const path    = require("path");
 
-const CleanWebpackPlugin   = require("clean-webpack-plugin");
-const HtmlWebpackPlugin    = require("html-webpack-plugin");
 const ExtractTextPlugin    = require("extract-text-webpack-plugin");
 const CssoWebpackPlugin    = require("csso-webpack-plugin").default;
 const CompressionPlugin    = require("compression-webpack-plugin");
@@ -20,18 +18,6 @@ module.exports = merge( common, {
 	devtool: "source-map",
 
 	plugins: [
-
-		new webpack.DefinePlugin({
-			"process.env.NODE_ENV": JSON.stringify("production")
-		}),
-
-		new CleanWebpackPlugin(["dist"]),
-
-		new HtmlWebpackPlugin({
-			template: path.join( __dirname, "src", "templates", "index.html" ),
-			xhtml: true,
-			inject: "body"
-		}),
 
 		new ExtractTextPlugin("styles.[chunkhash].css"),
 
