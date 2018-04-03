@@ -8,7 +8,7 @@ It's a production ready **NPM+Webpack** _automation_ and _module bundler_ focuse
 
 ## Who is this for?
 
-The main target audience for this project are **Designers** and **Frontend Developers**, but people trying to figure out **Webpack** could also benefit from reading the config files.
+The main target audience for this project are **Designers** and **Frontend Developers**, but people trying to figure out **Webpack** can also benefit from reading the config files.
 
 ## Why does this exists?
 
